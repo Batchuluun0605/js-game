@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+      const left = document.createElement('div');
+      const right = document.createElement('div');
+      const body = document.querySelector('body');
+
+      body.style.display = 'flex';
+      body.style.margin = '0';
+      left.style.width = '50%';
+      right.style.width = '50%';
+      left.style.height = '100vh';
+      right.style.height = '100vh';
+
+      left.style.backgroundColor = 'blue';
+      right.style.backgroundColor = 'red';
+
+      left.innerText = left.style.width;
+      right.innerText = right.style.width;
+      body.appendChild(left);
+      body.appendChild(right);
+
+      document.addEventListener('keypress', function (event) {
+        // Check if the key pressed is Enter (keyCode 13) or Space (keyCode 32)
+        if (event.keyCode === 13) {
+          // Enter key was pressed
+          addleftWidth()
+          // Perform your desired action here
+        } else if (event.keyCode === 32) {
+          // Space key was pressed
+        //   console.log('Space key was pressed');
+          addRightWidth()
+          // Perform your desired action here
+        }
+      });
+
+    //   left.addEventListener('click', addleftWidth);
+
+    //   right.addEventListener('click', addRightWidth);
+
+      function addleftWidth() {
+        const divElements = document.querySelectorAll('div');
+        count = parseInt(divElements[0].style.width) + 1;
+        divElements[0].style.width = `${count}%`;
+        divElements[0].innerText = `${count}%`;
+        rightCount = `${parseInt(divElements[1].style.width) - 1}%`;
+        divElements[1].style.width = rightCount;
+        divElements[1].innerText = rightCount;
+        if (parseInt(divElements[0].style.width) === 100) {
+          alert('Blue won');
+        }
+        localStorage.setItem('count', Math.random());
+      }
+
+      function addRightWidth() {
+        const divElements = document.querySelectorAll('div');
+        count = parseInt(divElements[1].style.width) + 1;
+        divElements[1].style.width = `${count}%`;
+        divElements[1].innerText = `${count}%`;
+        rightCount = `${parseInt(divElements[0].style.width) - 1}%`;
+        divElements[0].style.width = rightCount;
+        divElements[0].innerText = rightCount;
+        if (divElements[1].style.width === 100) {
+          alert('Red won');
+        }
+      }
+    
+    </script>
+</body>
+</html>
